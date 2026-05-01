@@ -44,8 +44,17 @@ public class Paginador<T> {
      * @return lista com no máximo n elementos
      */
     public List<T> primeirosN(List<T> lista, int n) {
-        // TODO: implemente usando limit
-        throw new UnsupportedOperationException("Não implementado");
+
+        if (lista == null) {
+            throw new IllegalArgumentException("Lista não pode ser nula");
+        }
+        if (n < 0) {
+            throw new IllegalArgumentException("Quantidade de elementos não pode ser negativa");
+        }
+
+        return lista.stream()
+                .limit(n)
+                .toList();
     }
 
     /**
