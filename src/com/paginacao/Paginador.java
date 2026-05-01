@@ -90,7 +90,15 @@ public class Paginador<T> {
      * @return total de páginas
      */
     public int totalPaginas(List<T> lista, int tamanhoPagina) {
-        // TODO: implemente
-        throw new UnsupportedOperationException("Não implementado");
+        
+        if (lista == null) {
+            throw new IllegalArgumentException("Lista não pode ser nula");
+        }
+        if (tamanhoPagina <= 0) {
+            throw new IllegalArgumentException("Tamanho da página deve ser maior que zero");
+        }
+
+        int totalElementos = lista.size();
+        return totalElementos % tamanhoPagina == 0 ? (totalElementos / tamanhoPagina) : (totalElementos / tamanhoPagina) + 1;
     }
 }
