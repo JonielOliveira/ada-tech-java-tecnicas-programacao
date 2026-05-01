@@ -1,7 +1,6 @@
 package com.paginacao;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Paginador<T> {
 
@@ -18,8 +17,23 @@ public class Paginador<T> {
      * @return lista com os elementos da página solicitada
      */
     public List<T> paginar(List<T> lista, int pagina, int tamanhoPagina) {
-        // TODO: implemente usando skip e limit
-        throw new UnsupportedOperationException("Não implementado");
+        
+        if (lista == null) {
+            throw new IllegalArgumentException("Lista não pode ser nula");
+        }
+        if (pagina < 0) {
+            throw new IllegalArgumentException("Página não pode ser negativa");
+        }
+        if (tamanhoPagina <= 0) {
+            throw new IllegalArgumentException("Tamanho da página deve ser maior que zero");
+        }
+
+        long offsetElementos = (long) pagina * tamanhoPagina;
+
+        return lista.stream()
+                .skip(offsetElementos)
+                .limit(tamanhoPagina)
+                .toList();
     }
 
     /**
