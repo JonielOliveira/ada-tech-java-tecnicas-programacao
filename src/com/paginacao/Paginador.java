@@ -1,6 +1,7 @@
 package com.paginacao;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Paginador<T> {
 
@@ -33,7 +34,7 @@ public class Paginador<T> {
         return lista.stream()
                 .skip(offsetElementos)
                 .limit(tamanhoPagina)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     /**
@@ -54,7 +55,7 @@ public class Paginador<T> {
 
         return lista.stream()
                 .limit(n)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     /**
@@ -75,7 +76,7 @@ public class Paginador<T> {
 
         return lista.stream()
                 .skip(n)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     /**
