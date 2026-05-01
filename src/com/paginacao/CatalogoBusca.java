@@ -1,6 +1,7 @@
 package com.paginacao;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CatalogoBusca {
 
@@ -50,14 +51,14 @@ public class CatalogoBusca {
                     ? livros
                     : livros.stream()
                     .filter(livro -> livro.getTitulo().contains(termoNormalizado))
-                    .toList();
+                    .collect(Collectors.toList());
         } else {
             final String termoNormalizado = termo.trim().toLowerCase();
             return termoNormalizado.isEmpty()
                     ? livros
                     : livros.stream()
                     .filter(livro -> livro.getTitulo().toLowerCase().contains(termoNormalizado))
-                    .toList();
+                    .collect(Collectors.toList());
         }
     }
 
