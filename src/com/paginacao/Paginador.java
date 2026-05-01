@@ -65,8 +65,17 @@ public class Paginador<T> {
      * @return lista sem os primeiros n elementos
      */
     public List<T> ignorarN(List<T> lista, int n) {
-        // TODO: implemente usando skip
-        throw new UnsupportedOperationException("Não implementado");
+
+        if (lista == null) {
+            throw new IllegalArgumentException("Lista não pode ser nula");
+        }
+        if (n < 0) {
+            throw new IllegalArgumentException("Quantidade de elementos a ignorar não pode ser negativa");
+        }
+
+        return lista.stream()
+                .skip(n)
+                .toList();
     }
 
     /**
